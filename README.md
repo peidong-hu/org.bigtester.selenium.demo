@@ -10,13 +10,9 @@ Just run the Java project in Eclipse as Java application. It will automatically 
 
 Java 8 needed to run the code.
 
-```
-Give examples
-```
-
 ## Running the tool
 
-Just run the Java project in Eclipse as Java application. It will automatically connect to my SauceLabs cloud testing lab to launch the browser and run the monitoring tool. The code will invoke Selenium api to initialize the panels to display the value of the BTC and USD amount.
+Just run the Java project in Eclipse as Java application. It will automatically connect to my SauceLabs cloud testing lab to launch the browser and run the monitoring tool. The code will invoke Selenium api to initialize the panels to display the value of the BTC and USD amount collected by Selenium api with ExpectedConditions as the trigger of collecting operations.
 If the USD price is changed, Selenium ExpectedCondition will be met and then trigger Selenium to read the USD price and then display it on the web page.
 
 Eclipse console can accept user commands including,
