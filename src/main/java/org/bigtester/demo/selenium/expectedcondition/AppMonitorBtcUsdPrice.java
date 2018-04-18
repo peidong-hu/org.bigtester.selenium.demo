@@ -66,8 +66,8 @@ public class AppMonitorBtcUsdPrice {
 			t.start();
 			
 			UIChanger uiChanger = new AppMonitorBtcUsdPrice.UIChanger(driver);
-			uiChanger.initNumberOfBtc("1");
-			uiChanger.initNumberOfUsd(driver.findElement(By
+			uiChanger.initNumberOfBtcDiv("1");
+			uiChanger.initNumberOfUsdDiv(driver.findElement(By
 						.id("numField")).getAttribute("value"));
 			uiChanger.initCommandMessageDiv();
 			final WebElement btcNumberElement = driver.findElement(By.id("invField"));
@@ -87,9 +87,10 @@ public class AppMonitorBtcUsdPrice {
 						}));
 				usdNumber.replace(0, usdNumber.length(),
 						usdNumberElement.getAttribute("value"));
-				
-				uiChanger.updateNumberOfBtc(btcNumberElement.getAttribute("value"));
-				uiChanger.updateNumberOfUsd(usdNumber.toString());
+				if (!stopMonitor) {
+					uiChanger.updateNumberOfBtcDiv(btcNumberElement.getAttribute("value"));
+					uiChanger.updateNumberOfUsdDiv(usdNumber.toString());
+				}
 				//System.out.println(usdNumber);
 			}
 		} catch (Throwable thr) {
@@ -146,6 +147,8 @@ public class AppMonitorBtcUsdPrice {
 						btcNumberElement.sendKeys("1");
 						stopMonitor = true;
 						uiChanger.updateCommandMessageDiv(input + " - Stop signal!");
+						uiChanger.deleteNumberOfBtcDiv();
+						uiChanger.deleteNumberOfUsdDiv();
 						//System.out.println("Stop signal received!");
 						break; // stop everything;
 					} else {
@@ -182,7 +185,7 @@ public class AppMonitorBtcUsdPrice {
 		 *
 		 * @param numBtc the num btc
 		 */
-		public void initNumberOfBtc(String numBtc ) {
+		public void initNumberOfBtcDiv(String numBtc ) {
 			js.executeScript("var numBtcDiv = document.createElement('div'); numBtcDiv.id='btcDivId'; document.getElementById('ratePane').appendChild(numBtcDiv); numBtcDiv.innerHTML='BTC amount collected by Selenium is: "+ numBtc +"'");
 		}
 		
@@ -191,8 +194,26 @@ public class AppMonitorBtcUsdPrice {
 		 *
 		 * @param numUsd the num usd
 		 */
-		public void initNumberOfUsd(String numUsd) {
+		public void initNumberOfUsdDiv(String numUsd) {
 			js.executeScript("var numUsdDiv = document.createElement('div'); numUsdDiv.id='usdDivId'; document.getElementById('ratePane').appendChild(numUsdDiv); numUsdDiv.innerHTML='USD price collected by Selenium is: "+ numUsd +"'");
+		}
+		
+		/**
+		 * Inits the number of btc.
+		 *
+		 * @param numBtc the num btc
+		 */
+		public void deleteNumberOfBtcDiv() {
+			js.executeScript("var numBtcDiv = document.getElementById('btcDivId'); numBtcDiv.parentNode.removeChild(numBtcDiv)");
+		}
+		
+		/**
+		 * Inits the number of usd.
+		 *
+		 * @param numUsd the num usd
+		 */
+		public void deleteNumberOfUsdDiv() {
+			js.executeScript("var numUsdDiv = document.getElementById('usdDivId'); numUsdDiv.parentNode.removeChild(numUsdDiv)");
 		}
 		
 		/**
@@ -216,7 +237,7 @@ public class AppMonitorBtcUsdPrice {
 		 *
 		 * @param numBtc the num btc
 		 */
-		public void updateNumberOfBtc(String numBtc ) {
+		public void updateNumberOfBtcDiv(String numBtc ) {
 			js.executeScript("var numBtcDiv = document.getElementById('btcDivId'); numBtcDiv.innerHTML='BTC amount collected by Selenium is: "+ numBtc +"'");
 		}
 		
@@ -225,7 +246,7 @@ public class AppMonitorBtcUsdPrice {
 		 *
 		 * @param numUsd the num usd
 		 */
-		public void updateNumberOfUsd(String numUsd) {
+		public void updateNumberOfUsdDiv(String numUsd) {
 			js.executeScript("var numUsdDiv = document.getElementById('usdDivId'); numUsdDiv.innerHTML='USD price collected by Selenium is: "+ numUsd +"'");
 		}
 		
