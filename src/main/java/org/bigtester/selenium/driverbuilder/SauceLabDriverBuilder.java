@@ -2,11 +2,10 @@ package org.bigtester.selenium.driverbuilder;
 
 import org.openqa.selenium.Platform;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyChromeDriver defines ....
  *
- * @author Jun Yang
+ * @author Peidong Hu
  */
 public class SauceLabDriverBuilder extends AbstractRemoteWebDriverBuilder {
 
