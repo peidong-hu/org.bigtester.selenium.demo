@@ -1,6 +1,6 @@
 # Demo of Selenium API Usage
 
-Project is to demo how to use Selenium API to monitor and display the BTC and its converted USD amount on the same web page.
+Project is to demo how to use Selenium API to monitor and display the BTC and its converted USD amount on the same web page. This program execution video recording can be found here, https://drive.google.com/drive/u/0/folders/1GE2C8T_9jwCEn6Ttqk8b86KGxRjdwraJ
 
 ## Getting Started
 
